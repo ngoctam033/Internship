@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    image: odoo:14
+    container_name: odoo-web
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      - ./odoo_module:/mnt/custom-addons  # Gắn kết thư mục odoo_module
+    environment:
+      - HOST=db
+      - USER=odoo_user
+      - PASSWORD=odoo_password
+      - DB_NAME=odoo_db
+    networks:
+      - odoo-network
+
+  db:
+    image: postgres:13
+    container_name: odoo-db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Gắn kết tệp init.sql
+    networks:
+      - odoo-network
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
+
+networks:
+  odoo-network:
+    driver: bridge

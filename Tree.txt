@@ -1,0 +1,15 @@
+# Tạo thư mục cho module mẫu
+mkdir -p odoo_module_template/{models,views,security,data,static/src/{css,js},demo}
+
+# Tạo các tệp cần thiết
+touch odoo_module_template/__init__.py
+touch odoo_module_template/__manifest__.py
+touch odoo_module_template/models/__init__.py
+touch odoo_module_template/models/my_model.py
+touch odoo_module_template/views/my_model_views.xml
+touch odoo_module_template/security/ir.model.access.csv
+touch odoo_module_template/security/security.xml
+touch odoo_module_template/data/ir_cron_data.xml
+touch odoo_module_template/static/src/css/custom_styles.css
+touch odoo_module_template/static/src/js/custom_scripts.js
+touch odoo_module_template/demo/demo_data.xml

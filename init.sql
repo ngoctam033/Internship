@@ -1,0 +1,3 @@
+CREATE DATABASE odoo_db;
+CREATE USER odoo_user WITH ENCRYPTED PASSWORD 'odoo_password';
+GRANT ALL PRIVILEGES ON DATABASE odoo_db TO odoo_user;
